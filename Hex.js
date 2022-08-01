@@ -40,5 +40,20 @@ class HexTools {
     return btoa([...hexStr].reduce((acc, _, i) =>
       acc += !(i - 1 & 1) ? String.fromCharCode(parseInt(hexStr.substring(i - 1, i + 1), 16)) : "", ""));
   }
+  
+   /*小端转大端*/
+  littleEndianToBigEndian(hex) {
+    return '0x' + hex.match(/../g).reverse().join('');
+  }
+  
+  /*十六进制转十进制浮点*/
+  hexToFloat(hex) {
+    let sign = (hex & 0x80000000) ? -1 : 1;
+    let exponent = ((hex >> 23) & 0xff) - 127;
+    let mantissa = 1 + ((hex & 0x7fffff) / 0x7fffff);
+    return sign * mantissa * Math.pow(2, exponent);
+  }
+  
+  
 
 }
