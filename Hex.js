@@ -28,7 +28,6 @@ class HexTools {
   /**字符串转16进制 */
   strToHex(str) {
     let arr = [];
-    arr.push('0x');
     for (let i = 0; i < str.length; i++) {
       arr.push(str.charCodeAt(i).toString(16));
     }
